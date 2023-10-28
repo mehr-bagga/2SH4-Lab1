@@ -22,6 +22,14 @@
         actual = Q1_for(37);
         expected = 13986;
         CuAssertIntEquals(tc, expected, actual);
+
+        actual = Q1_for(5);
+        expected = 100500;
+        CuAssertIntEquals(tc, expected, actual);
+
+        actual = Q1_for(7);
+        expected = 71071;
+        CuAssertIntEquals(tc, expected, actual);
     }
 
     void TestQ1_while(CuTest *tc) {
@@ -37,6 +45,15 @@
         actual = Q1_while(37);
         expected = 13986;
         CuAssertIntEquals(tc, expected, actual);
+        
+        actual = Q1_while(5);
+        expected = 100500;
+        CuAssertIntEquals(tc, expected, actual);
+
+        actual = Q1_while(7);
+        expected = 71071;
+        CuAssertIntEquals(tc, expected, actual);
+
     }
     void TestQ1_do(CuTest *tc) {
 
@@ -50,6 +67,14 @@
 
         actual = Q1_dowhile(37);
         expected = 13986;
+        CuAssertIntEquals(tc, expected, actual);
+
+        actual = Q1_dowhile(5);
+        expected = 100500;
+        CuAssertIntEquals(tc, expected, actual);
+
+        actual = Q1_dowhile(7);
+        expected = 71071;
         CuAssertIntEquals(tc, expected, actual);
     }
 
@@ -87,6 +112,16 @@
         input = 91.1;
         actual = Q2_FPN(input, threshold);
         expected = -999;
+        CuAssertIntEquals(tc, expected, actual);
+
+        input = -1.0;
+        actual = Q2_FPN(input, threshold);
+        expected = 1;
+        CuAssertIntEquals(tc, expected, actual);
+
+        input = 3.7;
+        actual = Q2_FPN(input, threshold);
+        expected = 3;
         CuAssertIntEquals(tc, expected, actual);
     }   
 
@@ -166,6 +201,32 @@
           	CuAssertIntEquals(tc, expected[i], actual[i]);
     }
 
+    void TestQ3_0(CuTest *tc) {
+        int input = 0;
+        int expected[100] = {0};
+        int actual[100] = {0};
+        int expectedCount = 0;
+        int actualCount = Q3(input, actual);
+        CuAssertIntEquals(tc, expectedCount, actualCount);
+
+        int i;
+        for (i = 0; i < 100; i++)
+            CuAssertIntEquals(tc, expected[i], actual[i]);
+    }
+
+    void TestQ3_1(CuTest *tc) {
+        int input = 1;
+        int expected[100] = {0};
+        int actual[100] = {0};
+        int expectedCount = 0;
+        int actualCount = Q3(input, actual);
+        CuAssertIntEquals(tc, expectedCount, actualCount);
+
+        int i;
+        for (i = 0; i < 100; i++)
+            CuAssertIntEquals(tc, expected[i], actual[i]);
+    }
+
 
 
 //===========================================================
@@ -223,6 +284,31 @@
             CuAssertIntEquals(tc, expectedArray[i], targetArray[i]);
     } 
 
+    void TestQ4_0(CuTest *tc) {
+        int targetArray[1] = {0};
+        int inputSize = 1;
+        int expectedArray[1] = {0};
+        int expectedPass = 1;
+        int actualPass = Q4_Bubble(targetArray, inputSize);
+        CuAssertIntEquals(tc, expectedPass, actualPass);
+
+        int i;
+        for (i = 0; i < inputSize; i++)
+            CuAssertIntEquals(tc, expectedArray[i], targetArray[i]);
+    }
+
+    void TestQ4_1(CuTest *tc) {
+        int targetArray[1] = {42};
+        int inputSize = 1;
+        int expectedArray[1] = {42};
+        int expectedPass = 1;
+        int actualPass = Q4_Bubble(targetArray, inputSize);
+        CuAssertIntEquals(tc, expectedPass, actualPass);
+
+        int i;
+        for (i = 0; i < inputSize; i++)
+            CuAssertIntEquals(tc, expectedArray[i], targetArray[i]);
+    }
   
 
     CuSuite* Lab1GetSuite() {
@@ -243,12 +329,16 @@
         SUITE_ADD_TEST(suite, TestQ3_1000);
         SUITE_ADD_TEST(suite, TestQ3_10000);
         SUITE_ADD_TEST(suite, TestQ3_neg);
+        SUITE_ADD_TEST(suite, TestQ3_0);
+        SUITE_ADD_TEST(suite, TestQ3_1);
      
         
 
         SUITE_ADD_TEST(suite, TestQ4_8);
         SUITE_ADD_TEST(suite, TestQ4_16);
         SUITE_ADD_TEST(suite, TestQ4_25);
+        SUITE_ADD_TEST(suite, TestQ4_0);
+        SUITE_ADD_TEST(suite, TestQ4_1);
 
 
         return suite;
